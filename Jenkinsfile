@@ -14,9 +14,26 @@ pipeline {
                 sh 'docker build . -t omarrabh54/firt-app-v2'
             }
         }
-        stage("test"){
-            steps{
-                sh 'docker run -d omarrabh54/firt-app-v2 echo "testing...."'
+        stage("testing"){
+            parallel {
+                stage("unit test"){
+                    steps{
+                        echo "unit testing ..."
+                        sh "sleep 10"
+                    }
+                }
+                stage("integration test"){
+                    steps{
+                        echo "integration testing ..."
+                        sh "sleep 10"
+                    }
+                }
+                stage("E2E Test"){
+                    staps{
+                        echo "E2E testing ....."
+                        sh "sleep 10"
+                    }
+                }
             }
         }
         stage("Release"){
