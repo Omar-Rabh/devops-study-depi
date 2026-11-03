@@ -29,13 +29,23 @@ pipeline {
                     }
                 }
                 stage("E2E Test"){
-                    steps{
-                        echo "E2E testing ....."
-                        sh "sleep 10"
+                    parallel{
+                        stage("Test Backend"){
+                            steps{
+                                echo "Testing Backend"
+                                sh "sleep 2"
+                            }
+                        }
+                        stage(Test DataBase){
+                            steps{
+                                echo "Testing Database"
+                                sh "sleep 2"
+                            }
+                        }
                     }
                 }
+                }
             }
-        }
         stage("Release"){
             steps{
                // docker login username & password wmn mkany haza a7b awgeh kol elshokr lbashmohands abobakr ❤️❤️
