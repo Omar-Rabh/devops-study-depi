@@ -29,8 +29,8 @@ pipeline {
                     }
                 }
                 stage("E2E Test"){
-                    parallel{
-                        stage("Test Backend"){
+                    stages{
+                            stage("Test Backend"){
                             steps{
                                 echo "Testing Backend"
                                 sh "sleep 2"
@@ -42,6 +42,7 @@ pipeline {
                                 sh "sleep 2"
                             }
                         }
+                        
                     }
                 }
                 }
