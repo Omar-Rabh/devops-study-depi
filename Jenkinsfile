@@ -29,7 +29,7 @@ pipeline {
                     }
                 }
                 stage("E2E Test"){
-                    staps{
+                    steps{
                         echo "E2E testing ....."
                         sh "sleep 10"
                     }
