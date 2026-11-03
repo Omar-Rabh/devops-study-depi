@@ -11,7 +11,9 @@ pipeline {
         }
         stage("build"){
             steps{
-                sh 'docker build . -t omarrabh54/firt-app-v2'
+                sh '''
+                docker build . -t omarrabh54/firt-app:$BUILD_NUMBER
+                '''
             }
         }
         stage("testing"){
@@ -54,7 +56,7 @@ pipeline {
                sh '''
                set +x
                printf '%s' "$dockerPass" | docker login -u $dockerUser --password-stdin
-               docker push omarrabh54/firt-app-v2
+               docker push omarrabh54/firt-app:$BUILD_NUMBER
                '''
                 }
             }
@@ -63,7 +65,7 @@ pipeline {
             steps{
                 input cancel: 'no', message: 'Continue for deployment ?!', ok: 'Deploy'
                 //run a container from the image u just created 
-                sh 'docker run -d omarrabh54/firt-app-v2 sleep 1d'
+                sh 'docker run -d omarrabh54/firt-app:$BUILD_NUMBER sleep 1d'
             }
         }
     }
