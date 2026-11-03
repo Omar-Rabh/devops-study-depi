@@ -36,7 +36,7 @@ pipeline {
                                 sh "sleep 2"
                             }
                         }
-                        stage(Test DataBase){
+                        stage("Test DataBase"){
                             steps{
                                 echo "Testing Database"
                                 sh "sleep 2"
