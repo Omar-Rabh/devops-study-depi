@@ -63,7 +63,7 @@ pipeline {
         }
         stage("Deploy"){
             steps{
-               // input cancel: 'no', message: 'Continue for deployment ?!', ok: 'Deploy'
+                input cancel: 'no', message: 'Continue for deployment ?!', ok: 'Deploy'
                 //run a container from the image u just created 
                 sh 'docker run -d omarrabh54/firt-app:$BUILD_NUMBER sleep 1d'
             }
